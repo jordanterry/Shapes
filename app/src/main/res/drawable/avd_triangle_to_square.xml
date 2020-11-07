@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/shape_trangle">
+
+  <target
+      android:name="morph"
+      android:animation="@anim/anim_triangle_square" />
+
+<!-- <target-->
+    <!--     android:name="rotation"-->
+    <!--     android:animation="@anim/reverse_rotation" />-->
+
+</animated-vector>
