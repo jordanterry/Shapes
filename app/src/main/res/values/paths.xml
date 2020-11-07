@@ -5,5 +5,5 @@
     <string name="path_hexagon">M 5,2 L 2,3 L 2,7, L 5,8 L 8,7 L 8,3 Z</string>
 
 
-    <string name="path_rhombus">M 5,2 L 8,5 L 5,8 L 2,5 Z</string>
+    <string name="path_rhombus">M 5,2 L 2,5 L 2,5 L 5,8 L 5,8 L 8,5 Z</string>
 </resources>

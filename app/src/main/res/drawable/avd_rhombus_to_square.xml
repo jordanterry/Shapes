@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/shape_triangle">
+    android:drawable="@drawable/shape_rhombus">
 
     <target
         android:name="morph"
-        android:animation="@anim/anim_triangle_square" />
+        android:animation="@anim/anim_rhombus_to_square" />
 
 </animated-vector>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/shape_triangle">
+    android:drawable="@drawable/shape_square">
 
   <target
       android:name="morph"
-      android:animation="@anim/anim_triangle_hexagon" />
+      android:animation="@anim/anim_square_rhombus" />
 
 
 </animated-vector>

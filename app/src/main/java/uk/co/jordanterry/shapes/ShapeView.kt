@@ -25,15 +25,23 @@ class ShapeView @JvmOverloads constructor(
     private val transitions = mapOf(
         Shape.Square to listOf(
             Transition(Shape.Hexagon, R.drawable.avd_square_to_hexagon),
-            Transition(Shape.Triangle, R.drawable.avd_square_to_triangle)
+            Transition(Shape.Triangle, R.drawable.avd_square_to_triangle),
+            Transition(Shape.Rhombus, R.drawable.avd_square_to_rhombus)
         ),
         Shape.Triangle to listOf(
             Transition(Shape.Square, R.drawable.avd_triangle_to_square),
-            Transition(Shape.Hexagon, R.drawable.avd_triangle_to_hexagon)
+            Transition(Shape.Hexagon, R.drawable.avd_triangle_to_hexagon),
+            Transition(Shape.Rhombus, R.drawable.avd_triangle_to_rhombus)
         ),
         Shape.Hexagon to listOf(
             Transition(Shape.Square, R.drawable.avd_hexagon_to_square),
-            Transition(Shape.Triangle, R.drawable.avd_hexagon_to_triangle)
+            Transition(Shape.Triangle, R.drawable.avd_hexagon_to_triangle),
+            Transition(Shape.Rhombus, R.drawable.avd_hexagon_to_rhombus)
+        ),
+        Shape.Rhombus to listOf(
+            Transition(Shape.Square, R.drawable.avd_rhombus_to_square),
+            Transition(Shape.Triangle, R.drawable.avd_rhombus_to_triangle),
+            Transition(Shape.Hexagon, R.drawable.avd_rhombus_to_hexagon)
         )
 
     )
@@ -98,7 +106,8 @@ class ShapeView @JvmOverloads constructor(
     enum class Shape {
         Square,
         Triangle,
-        Hexagon
+        Hexagon,
+        Rhombus
     }
 
     data class Transition(
