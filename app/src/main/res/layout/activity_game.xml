@@ -217,12 +217,4 @@
         app:layout_constraintTop_toBottomOf="@id/sixteen"
         tools:text="0" />
 
-    <Button
-        android:id="@+id/bDebugging"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/toggle_debugging"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

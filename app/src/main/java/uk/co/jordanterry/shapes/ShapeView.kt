@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
@@ -54,18 +53,9 @@ class ShapeView @JvmOverloads constructor(
 
     private val ivShape: ImageView
 
-    private val tvName: TextView
-
-    var isDebuggable: Boolean = false
-        set(value) {
-            field = value
-            tvName.visibility = if (value) View.VISIBLE else View.GONE
-        }
-
     init {
         View.inflate(context, R.layout.view_shape, this)
         ivShape = findViewById(R.id.ivShape)
-        tvName = findViewById(R.id.tvName)
     }
 
     fun updateShape(shape: Shape) {
@@ -97,7 +87,6 @@ class ShapeView @JvmOverloads constructor(
         newDrawable.registerAnimationCallback(object : Animatable2.AnimationCallback() {
             override fun onAnimationEnd(drawable: Drawable?) {
                 currentShape = nextShape
-                tvName.text = nextShape.name
             }
         })
         newDrawable.start()

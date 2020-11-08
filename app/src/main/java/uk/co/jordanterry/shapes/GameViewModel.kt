@@ -30,12 +30,14 @@ class GameViewModel(
         }.map { shape ->
             UiModel.Loaded.UiShape(
                 shape,
-                getCurrentTime() + (300..500).random()
+                getCurrentTime() + (500..800).random()
             )
         }
 
-        _uiModel.value = UiModel.Loaded(
-            0, shapeToSelect, shapes
+        _uiModel.postValue(
+            UiModel.Loaded(
+                0, shapeToSelect, shapes
+            )
         )
         updateShapes()
     }
@@ -45,11 +47,12 @@ class GameViewModel(
         if (currentUiModel is UiModel.Loaded) {
             val shapes = currentUiModel.shapes
             val newShapes = shapes.map(::updateShapeIfRequired)
-            _uiModel.value =
+            _uiModel.postValue(
                 currentUiModel.copy(
                     shapeToSelect = updateShapeIfRequired(currentUiModel.shapeToSelect),
                     shapes = newShapes
                 )
+            )
         }
         handler.postDelayed(updateRunnable, 100)
     }
@@ -78,18 +81,20 @@ class GameViewModel(
         val currentUiModel = uiModel.value
         if (currentUiModel is UiModel.Loaded) {
             if (currentUiModel.shapes[position].shape == currentUiModel.shapeToSelect.shape) {
-                _uiModel.value = currentUiModel.copy(
-                    score = currentUiModel.score + 1,
-                    shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
-                        if (index == position) {
-                            UiModel.Loaded.UiShape(Shape.Dash, getCurrentTime() + 1000)
-                        } else {
-                            uiShape
-                        }
-                    })
+                _uiModel.postValue(
+                    currentUiModel.copy(
+                        score = currentUiModel.score + 1,
+                        shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
+                            if (index == position) {
+                                UiModel.Loaded.UiShape(Shape.Dash, getCurrentTime() + 1000)
+                            } else {
+                                uiShape
+                            }
+                        })
+                )
             } else {
                 stopUpdates()
-                _uiModel.value = currentUiModel.copy(
+                _uiModel.postValue(currentUiModel.copy(
                     shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
                         if (index != position) {
                             UiModel.Loaded.UiShape(Shape.Dash, getCurrentTime())
@@ -97,7 +102,7 @@ class GameViewModel(
                             uiShape
                         }
                     }
-                )
+                ))
             }
         }
     }

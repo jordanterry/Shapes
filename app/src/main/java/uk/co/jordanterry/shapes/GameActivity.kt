@@ -1,10 +1,11 @@
 package uk.co.jordanterry.shapes
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -36,7 +37,6 @@ class GameActivity : AppCompatActivity() {
 
     private val shapeToSelect: ShapeView by lazy { findViewById<ShapeView>(R.id.svSelect) }
     private val score: TextView by lazy { findViewById<TextView>(R.id.tvScore) }
-    private val bDebugging: Button by lazy { findViewById<Button>(R.id.bDebugging) }
 
     private val viewModel: GameViewModel by lazy {
         GameViewModel(GetCurrentTimeImpl(), Handler(Looper.getMainLooper()))
@@ -70,10 +70,12 @@ class GameActivity : AppCompatActivity() {
             shapeView.tag = index
             shapeView.setOnClickListener(shapeClickListener)
         }
-        bDebugging.setOnClickListener {
-            shapeToSelect.isDebuggable = !shapeToSelect.isDebuggable
-            shapes.forEach { shape -> shape.isDebuggable = !shape.isDebuggable }
-        }
         viewModel.init()
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, GameActivity::class.java)
+        }
     }
 }
