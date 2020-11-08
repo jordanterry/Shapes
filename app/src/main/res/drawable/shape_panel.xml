@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="80dp"
+    android:viewportWidth="400"
+    android:viewportHeight="100">
+
+    <path
+        android:name="panel"
+        android:pathData="M 5,45 L 5,95 L 395,95 L 395,45 Z"
+        android:strokeWidth="3"
+        android:strokeColor="@color/shape_colour" />
+
+    <!--    <path-->
+    <!--        android:name="score"-->
+    <!--        android:pathData="M 145,20 L 145,85 L 255,85 L 255,20 Z"-->
+    <!--        android:strokeWidth="3"-->
+    <!--        android:strokeColor="@color/shape_colour" />-->
+
+</vector>
