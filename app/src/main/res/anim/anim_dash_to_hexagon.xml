@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:startOffset="0">
+    android:startOffset="@integer/morph_animation_offset">
+
     <objectAnimator
-        android:duration="400"
+        android:duration="@integer/morph_animation_duration"
         android:propertyName="pathData"
         android:valueFrom="@string/path_dash"
         android:valueTo="@string/path_hexagon"
         android:valueType="pathType" />
+
 </set>
