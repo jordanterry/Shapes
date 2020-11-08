@@ -4,15 +4,10 @@
     android:height="24dp"
     android:viewportWidth="10"
     android:viewportHeight="10">
+    <path
+        android:name="morph"
+        android:pathData="@string/path_square"
+        android:strokeWidth="0.5"
+        android:strokeColor="#000000" />
 
-    <group
-        android:name="rotation"
-        android:pivotX="5"
-        android:pivotY="5">
-        <path
-            android:name="morph"
-            android:pathData="@string/path_square"
-            android:strokeWidth="0.5"
-            android:strokeColor="#000000" />
-    </group>
 </vector>

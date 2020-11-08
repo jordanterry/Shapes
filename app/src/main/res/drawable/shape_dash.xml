@@ -7,8 +7,7 @@
 
     <path
         android:name="morph"
-        android:pathData="@string/path_triangle"
+        android:pathData="@string/path_dash"
         android:strokeWidth="0.5"
         android:strokeColor="#000000" />
-
 </vector>

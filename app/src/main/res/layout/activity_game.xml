@@ -4,15 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".GameActivity">
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svOne"
+        android:id="@+id/svSelect"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toTopOf="@id/one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <uk.co.jordanterry.shapes.ShapeView
+        android:id="@+id/one"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@id/svFive"
-        app:layout_constraintEnd_toStartOf="@id/svTwo"
+        app:layout_constraintBottom_toTopOf="@id/five"
+        app:layout_constraintEnd_toStartOf="@id/two"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,82 +29,82 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svTwo"
+        android:id="@+id/two"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@id/svSix"
-        app:layout_constraintEnd_toStartOf="@id/svThree"
-        app:layout_constraintStart_toEndOf="@id/svOne"
+        app:layout_constraintBottom_toTopOf="@id/six"
+        app:layout_constraintEnd_toStartOf="@id/three"
+        app:layout_constraintStart_toEndOf="@id/one"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svThree"
+        android:id="@+id/three"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@id/svSeven"
-        app:layout_constraintEnd_toStartOf="@id/svFour"
-        app:layout_constraintStart_toEndOf="@id/svTwo"
+        app:layout_constraintBottom_toTopOf="@id/seven"
+        app:layout_constraintEnd_toStartOf="@id/four"
+        app:layout_constraintStart_toEndOf="@id/two"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svFour"
+        android:id="@+id/four"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@id/svEight"
+        app:layout_constraintBottom_toTopOf="@id/eight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/svThree"
+        app:layout_constraintStart_toEndOf="@id/three"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svFive"
+        android:id="@+id/five"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintEnd_toStartOf="@id/svSix"
+        app:layout_constraintEnd_toStartOf="@id/six"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svOne" />
+        app:layout_constraintTop_toBottomOf="@id/one" />
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svSix"
+        android:id="@+id/six"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintEnd_toStartOf="@id/svSeven"
-        app:layout_constraintStart_toEndOf="@id/svFive"
-        app:layout_constraintTop_toBottomOf="@id/svTwo" />
+        app:layout_constraintEnd_toStartOf="@id/seven"
+        app:layout_constraintStart_toEndOf="@id/five"
+        app:layout_constraintTop_toBottomOf="@id/two" />
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svSeven"
+        android:id="@+id/seven"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintEnd_toStartOf="@id/svEight"
-        app:layout_constraintStart_toEndOf="@id/svSix"
-        app:layout_constraintTop_toBottomOf="@id/svThree" />
+        app:layout_constraintEnd_toStartOf="@id/eight"
+        app:layout_constraintStart_toEndOf="@id/six"
+        app:layout_constraintTop_toBottomOf="@id/three" />
 
     <uk.co.jordanterry.shapes.ShapeView
-        android:id="@+id/svEight"
+        android:id="@+id/eight"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/svSeven"
-        app:layout_constraintTop_toBottomOf="@id/svFour" />
+        app:layout_constraintStart_toEndOf="@id/seven"
+        app:layout_constraintTop_toBottomOf="@id/four" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -198,6 +207,22 @@
         app:layout_constraintStart_toEndOf="@id/fifteen"
         app:layout_constraintTop_toBottomOf="@id/twelve" />
 
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sixteen"
+        tools:text="0" />
 
+    <Button
+        android:id="@+id/bDebugging"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/toggle_debugging"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
