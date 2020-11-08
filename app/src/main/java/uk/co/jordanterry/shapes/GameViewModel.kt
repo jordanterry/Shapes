@@ -71,7 +71,7 @@ class GameViewModel(
     }
 
     private fun getUpdateTime(): Long {
-        return (1500L..25000L).random()
+        return (1500L..2500L).random()
     }
 
     fun shapeSelected(position: Int) {
