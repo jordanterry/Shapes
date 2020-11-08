@@ -2,9 +2,8 @@
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/shape_square">
 
-  <target
-      android:name="morph"
-      android:animation="@anim/anim_square_rhombus" />
-
+    <target
+        android:name="morph"
+        android:animation="@anim/anim_square_to_rhombus" />
 
 </animated-vector>

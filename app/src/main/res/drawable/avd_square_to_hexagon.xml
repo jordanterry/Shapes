@@ -2,9 +2,8 @@
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/shape_square">
 
-  <target
-      android:name="morph"
-      android:animation="@anim/anim_square_hexagon" />
-
+    <target
+        android:name="morph"
+        android:animation="@anim/anim_square_to_hexagon" />
 
 </animated-vector>

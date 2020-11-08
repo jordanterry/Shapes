@@ -4,7 +4,6 @@
 
     <target
         android:name="morph"
-        android:animation="@anim/anim_triangle_rhombus" />
-
+        android:animation="@anim/anim_triangle_to_rhombus" />
 
 </animated-vector>

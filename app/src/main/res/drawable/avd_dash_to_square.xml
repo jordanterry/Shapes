@@ -4,6 +4,6 @@
 
     <target
         android:name="morph"
-        android:animation="@anim/anim_dash_square" />
+        android:animation="@anim/anim_dash_to_square" />
 
 </animated-vector>

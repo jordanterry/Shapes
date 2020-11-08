@@ -2,8 +2,8 @@
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/shape_hexagon">
 
-  <target
-      android:name="morph"
-      android:animation="@anim/anim_hexagon_rhombus" />
+    <target
+        android:name="morph"
+        android:animation="@anim/anim_hexagon_to_rhombus" />
 
 </animated-vector>

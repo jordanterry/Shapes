@@ -4,6 +4,6 @@
 
     <target
         android:name="morph"
-        android:animation="@anim/anim_dash_hexagon" />
+        android:animation="@anim/anim_dash_to_hexagon" />
 
 </animated-vector>

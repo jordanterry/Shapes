@@ -9,6 +9,6 @@
         android:name="morph"
         android:pathData="@string/path_rhombus"
         android:strokeWidth="0.5"
-        android:strokeColor="#000000" />
+        android:strokeColor="@color/shape_colour" />
 
 </vector>
