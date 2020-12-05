@@ -1,4 +1,4 @@
-package uk.co.jordanterry.shapes
+package uk.co.jordanterry.shapes.ui
 
 enum class Shape {
     Square,

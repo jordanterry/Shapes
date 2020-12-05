@@ -1,9 +1,10 @@
-package uk.co.jordanterry.shapes
+package uk.co.jordanterry.shapes.ui
 
 import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import uk.co.jordanterry.squares.logic.usecases.GetCurrentTime
 
 
 class GameViewModel(
@@ -17,14 +18,18 @@ class GameViewModel(
     val uiModel: LiveData<UiModel> = _uiModel
 
     init {
-        _uiModel.value = UiModel.Loading
+        _uiModel.value =
+            UiModel.Loading
     }
 
     fun init() {
-        val shapeToSelect = UiModel.Loaded.UiShape(
-            shape = Shape.values().filter { it != Shape.Dash }.random(),
-            changeTime = getCurrentTime() + getUpdateTime()
-        )
+        val shapeToSelect =
+            UiModel.Loaded.UiShape(
+                shape = Shape.values()
+                    .filter { it != Shape.Dash }
+                    .random(),
+                changeTime = getCurrentTime() + getUpdateTime()
+            )
         val shapes = (1..16).map {
             Shape.Dash
         }.map { shape ->
@@ -67,7 +72,8 @@ class GameViewModel(
 
     private fun updateShape(uiShape: UiModel.Loaded.UiShape): UiModel.Loaded.UiShape {
         return UiModel.Loaded.UiShape(
-            Shape.values().filter { it != uiShape.shape && it != Shape.Dash }
+            Shape.values()
+                .filter { it != uiShape.shape && it != Shape.Dash }
                 .random(),
             getCurrentTime() + getUpdateTime()
         )
@@ -86,7 +92,10 @@ class GameViewModel(
                         score = currentUiModel.score + 1,
                         shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
                             if (index == position) {
-                                UiModel.Loaded.UiShape(Shape.Dash, getCurrentTime() + 1000)
+                                UiModel.Loaded.UiShape(
+                                    Shape.Dash,
+                                    getCurrentTime() + 1000
+                                )
                             } else {
                                 uiShape
                             }
@@ -97,7 +106,10 @@ class GameViewModel(
                 _uiModel.postValue(currentUiModel.copy(
                     shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
                         if (index != position) {
-                            UiModel.Loaded.UiShape(Shape.Dash, getCurrentTime())
+                            UiModel.Loaded.UiShape(
+                                Shape.Dash,
+                                getCurrentTime()
+                            )
                         } else {
                             uiShape
                         }
@@ -122,7 +134,7 @@ class GameViewModel(
             val score: Int,
             val shapeToSelect: UiShape,
             val shapes: List<UiShape>
-        ) : GameViewModel.UiModel() {
+        ) : UiModel() {
             data class UiShape(
                 val shape: Shape,
                 val changeTime: Long

@@ -1,8 +1,9 @@
-package uk.co.jordanterry.shapes
+package uk.co.jordanterry.shapes.ui
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import uk.co.jordanterry.shapes.R
 
 class MenuActivity : AppCompatActivity() {
 
@@ -14,7 +15,11 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         bStartGame.setOnClickListener {
-            startActivity(GameActivity.newIntent(this))
+            startActivity(
+                GameActivity.newIntent(
+                    this
+                )
+            )
         }
     }
 }

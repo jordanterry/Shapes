@@ -1,47 +1,28 @@
-package uk.co.jordanterry.shapes
+package uk.co.jordanterry.shapes.ui
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import kotlinx.android.synthetic.main.activity_game.*
+import uk.co.jordanterry.shapes.R
+import uk.co.jordanterry.squares.logic.usecases.GetCurrentTime
 
 class GameActivity : AppCompatActivity() {
 
-    private val shapeIds: List<Int> = listOf(
-        R.id.one,
-        R.id.two,
-        R.id.three,
-        R.id.four,
-        R.id.five,
-        R.id.six,
-        R.id.seven,
-        R.id.eight,
-        R.id.nine,
-        R.id.ten,
-        R.id.eleven,
-        R.id.twelve,
-        R.id.thirteen,
-        R.id.fourteen,
-        R.id.fifteen,
-        R.id.sixteen
-    )
-
     private val shapes: List<ShapeView> by lazy {
-        shapeIds.map { findViewById<ShapeView>(it) }
+        gShapes.referencedIds.map { findViewById<ShapeView>(it) }
     }
 
-    private val shapeToSelect: ShapeView by lazy { findViewById<ShapeView>(R.id.svSelect) }
-    private val score: TextView by lazy { findViewById<TextView>(R.id.tvScore) }
-
     private val viewModel: GameViewModel by lazy {
-        GameViewModel(GetCurrentTimeImpl(), Handler(Looper.getMainLooper()))
+        GameViewModel(
+            GetCurrentTime.create(),
+            Handler(Looper.getMainLooper())
+        )
     }
 
     private val shapeClickListener = View.OnClickListener { view ->
@@ -59,8 +40,8 @@ class GameActivity : AppCompatActivity() {
                 is GameViewModel.UiModel.Loading -> {
                 }
                 is GameViewModel.UiModel.Loaded -> {
-                    score.text = uiModel.score.toString()
-                    shapeToSelect.updateShape(uiModel.shapeToSelect.shape)
+                    tvScore.text = uiModel.score.toString()
+                    svSelect.updateShape(uiModel.shapeToSelect.shape)
                     uiModel.shapes.forEachIndexed { index, uiShape ->
                         shapes[index].updateShape(uiShape.shape)
                     }
@@ -73,12 +54,6 @@ class GameActivity : AppCompatActivity() {
             shapeView.setOnClickListener(shapeClickListener)
         }
         viewModel.init()
-
-        val ivPanel = findViewById<ImageView>(R.id.ivPanel)
-        val panelDrawable = ivPanel.drawable
-        if (panelDrawable is AnimatedVectorDrawable) {
-            panelDrawable.start()
-        }
     }
 
     companion object {

@@ -1,2 +1,4 @@
+include ':game'
+include ':logic'
 include ':app'
 rootProject.name = "Shapes"

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".ui.GameActivity">
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/svSelect"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -15,7 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gShapes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen" />
+
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/one"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -28,7 +34,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/two"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -40,7 +46,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/three"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -52,7 +58,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/four"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -65,7 +71,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/five"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -76,7 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/one" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/six"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -86,7 +92,7 @@
         app:layout_constraintStart_toEndOf="@id/five"
         app:layout_constraintTop_toBottomOf="@id/two" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/seven"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -96,7 +102,7 @@
         app:layout_constraintStart_toEndOf="@id/six"
         app:layout_constraintTop_toBottomOf="@id/three" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/eight"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -116,7 +122,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/nine"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -129,7 +135,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/ten"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -141,7 +147,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/eleven"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -153,7 +159,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/twelve"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -166,7 +172,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/thirteen"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -177,7 +183,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nine" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/fourteen"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -187,7 +193,7 @@
         app:layout_constraintStart_toEndOf="@id/thirteen"
         app:layout_constraintTop_toBottomOf="@id/ten" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/fifteen"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -197,7 +203,7 @@
         app:layout_constraintStart_toEndOf="@id/fourteen"
         app:layout_constraintTop_toBottomOf="@id/eleven" />
 
-    <uk.co.jordanterry.shapes.ShapeView
+    <uk.co.jordanterry.shapes.ui.ShapeView
         android:id="@+id/sixteen"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -213,18 +219,8 @@
         android:layout_height="wrap_content"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/ivPanel"
-        app:layout_constraintStart_toStartOf="@id/ivPanel"
-        app:layout_constraintTop_toTopOf="@id/ivPanel"
-        tools:text="0" />
-
-    <ImageView
-        android:id="@+id/ivPanel"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/avd_panel_trim_in"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
