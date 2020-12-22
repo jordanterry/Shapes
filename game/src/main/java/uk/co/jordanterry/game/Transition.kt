@@ -1,7 +1,6 @@
-package uk.co.jordanterry.shapes.ui
+package uk.co.jordanterry.game
 
 import androidx.annotation.DrawableRes
-import uk.co.jordanterry.shapes.ui.Shape
 
 data class Transition(
     val to: Shape,

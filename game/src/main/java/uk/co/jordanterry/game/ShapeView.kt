@@ -1,15 +1,16 @@
-package uk.co.jordanterry.shapes.ui
+package uk.co.jordanterry.game
 
 import android.content.Context
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import uk.co.jordanterry.shapes.R
 
 class ShapeView @JvmOverloads constructor(
     context: Context,
@@ -122,9 +123,12 @@ class ShapeView @JvmOverloads constructor(
     fun updateShape(shape: Shape) {
         if (currentShape == null) {
             currentShape = Shape.Dash
-            ivShape.setImageDrawable(ContextCompat.getDrawable(context,
-                R.drawable.shape_dash
-            ))
+            ivShape.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.shape_dash
+                )
+            )
         } else if (shape != currentShape && !isTransitioning()) {
             val newTransition = transitions[currentShape!!]!!.first { it.to == shape }
             setNextTransition(newTransition, shape)
@@ -140,6 +144,7 @@ class ShapeView @JvmOverloads constructor(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setNextTransition(transition: Transition, nextShape: Shape) {
         val currentDrawable = ivShape.drawable
         if (currentDrawable is AnimatedVectorDrawable) {

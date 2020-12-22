@@ -1,4 +1,4 @@
-package uk.co.jordanterry.shapes.ui
+package uk.co.jordanterry.game
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_game.*
-import uk.co.jordanterry.shapes.R
 import uk.co.jordanterry.squares.logic.usecases.GetCurrentTime
 
 class GameActivity : AppCompatActivity() {

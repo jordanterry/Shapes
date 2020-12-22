@@ -1,4 +1,4 @@
-package uk.co.jordanterry.shapes.ui
+package uk.co.jordanterry.game
 
 import android.os.Handler
 import androidx.lifecycle.LiveData
