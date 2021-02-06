@@ -5,6 +5,14 @@
       <module name="Shapes.app" target="1.8" />
       <module name="Shapes.firebase" target="1.8" />
       <module name="Shapes.game" target="1.8" />
+      <module name="Shapes.metrics" target="1.8" />
+      <module name="Shapes.metrics.api" target="1.8" />
+      <module name="Shapes.metrics.impl" target="1.8" />
+      <module name="Shapes.metrics.wiring" target="1.8" />
+      <module name="Shapes.squares" target="1.8" />
+      <module name="Shapes.squares.api" target="1.8" />
+      <module name="Shapes.squares.impl" target="1.8" />
+      <module name="Shapes.squares.wiring" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

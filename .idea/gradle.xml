@@ -16,6 +16,14 @@
             <option value="$PROJECT_DIR$/firebase" />
             <option value="$PROJECT_DIR$/game" />
             <option value="$PROJECT_DIR$/logic" />
+            <option value="$PROJECT_DIR$/metrics" />
+            <option value="$PROJECT_DIR$/metrics/api" />
+            <option value="$PROJECT_DIR$/metrics/impl" />
+            <option value="$PROJECT_DIR$/metrics/wiring" />
+            <option value="$PROJECT_DIR$/squares" />
+            <option value="$PROJECT_DIR$/squares/api" />
+            <option value="$PROJECT_DIR$/squares/impl" />
+            <option value="$PROJECT_DIR$/squares/wiring" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
