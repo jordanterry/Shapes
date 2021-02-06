@@ -7,7 +7,5 @@ include ':metrics:impl'
 include ':metrics:api'
 include ':metrics'
 include ':firebase'
-include ':game'
-include ':logic'
 include ':app'
 rootProject.name = "Shapes"

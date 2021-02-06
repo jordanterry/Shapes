@@ -1,4 +1,4 @@
-package uk.co.jordanterry.squares
+package uk.co.jordanterry.shapes
 
 import org.junit.Test
 

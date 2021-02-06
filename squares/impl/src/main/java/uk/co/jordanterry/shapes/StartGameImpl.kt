@@ -1,4 +1,11 @@
 package uk.co.jordanterry.shapes
 
-class StartGameImpl {
+import android.content.Context
+import android.content.Intent
+
+class StartGameImpl : StartGame {
+    override fun start(context: Context) {
+        val intent = Intent(context, GameActivity::class.java)
+        context.startActivity(intent)
+    }
 }

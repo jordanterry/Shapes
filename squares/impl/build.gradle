@@ -1,15 +1,17 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -24,8 +26,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility versions.sourceCompatibility
+        targetCompatibility versions.targetCompatibility
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -33,7 +35,20 @@ android {
 }
 
 dependencies {
-
     implementation libraries.kotlin
     api project(':squares:api')
+
+    implementation libraries.androidx.appcompat
+    implementation libraries.androidx.core_ktx
+    implementation libraries.androidx.constraint_layout
+    implementation libraries.androidx.lifecycle
+    implementation libraries.androidx.lifecycle_extensions
+    implementation libraries.material.components
+
+    // Dagger
+    implementation libraries.dagger.android
+    implementation libraries.dagger.androidSupport
+    kapt libraries.dagger.compiler
+    kapt libraries.dagger.androidProcessor
+
 }

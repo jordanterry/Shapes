@@ -3,7 +3,6 @@ package uk.co.jordanterry.shapes.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -15,11 +14,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PlayGamesAuthProvider
-import uk.co.jordanterry.game.GameActivity
+import dagger.android.AndroidInjection
 import uk.co.jordanterry.shapes.R
+import uk.co.jordanterry.shapes.StartGame
+import javax.inject.Inject
 
 
 class MenuActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var startGame: StartGame
 
     private lateinit var auth: FirebaseAuth
 
@@ -27,11 +31,12 @@ class MenuActivity : AppCompatActivity() {
         findViewById<Button>(R.id.bStartGame)
     }
 
-    private val bPlayServices: Button by lazy {
-        findViewById<Button>(R.id.bPlayServices)
-    }
+//    private val bPlayServices: Button by lazy {
+//        findViewById<Button>(R.id.bPlayServices)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
@@ -41,22 +46,18 @@ class MenuActivity : AppCompatActivity() {
             .build()
 
 
-        bPlayServices.setOnClickListener {
-            val signInClient = GoogleSignIn.getClient(
-                this,
-                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN
-            )
-            val intent = signInClient.signInIntent
-            startActivityForResult(intent, RC_SIGN_IN)
-
-        }
+//        bPlayServices.setOnClickListener {
+//            val signInClient = GoogleSignIn.getClient(
+//                this,
+//                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN
+//            )
+//            val intent = signInClient.signInIntent
+//            startActivityForResult(intent, RC_SIGN_IN)
+//
+//        }
 
         bStartGame.setOnClickListener {
-            startActivity(
-                GameActivity.newIntent(
-                    this
-                )
-            )
+            startGame.start(this)
         }
     }
 
@@ -123,11 +124,11 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
-        if (firebaseUser != null) {
-            bPlayServices.visibility = View.GONE
-        } else {
-            bPlayServices.visibility = View.VISIBLE
-        }
+//        if (firebaseUser != null) {
+//            bPlayServices.visibility = View.GONE
+//        } else {
+//            bPlayServices.visibility = View.VISIBLE
+//        }
     }
 
     override fun onActivityResult(

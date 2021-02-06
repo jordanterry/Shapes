@@ -1,10 +1,9 @@
-package uk.co.jordanterry.game
+package uk.co.jordanterry.shapes
 
 import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import uk.co.jordanterry.squares.logic.usecases.GetCurrentTime
 
 
 class GameViewModel(

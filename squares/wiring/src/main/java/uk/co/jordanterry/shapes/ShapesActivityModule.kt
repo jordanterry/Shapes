@@ -1,4 +1,11 @@
 package uk.co.jordanterry.shapes
 
-class ShapesActivityModule {
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
+
+@Module(includes = [ShapesModule::class])
+abstract class ShapesActivityModule {
+
+    @ContributesAndroidInjector
+    abstract fun contributesGameActivity(): GameActivity
 }

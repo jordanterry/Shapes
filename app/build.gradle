@@ -1,19 +1,19 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 apply plugin: 'com.google.gms.google-services'
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
         applicationId "uk.co.jordanterry.shapes"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -27,8 +27,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility versions.sourceCompatibility
+        targetCompatibility versions.targetCompatibility
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -36,8 +36,7 @@ android {
 }
 
 dependencies {
-    implementation project(':game')
-
+    implementation project(':squares')
 
     api platform('com.google.firebase:firebase-bom:26.2.0')
     api 'com.google.firebase:firebase-analytics-ktx'
@@ -53,6 +52,12 @@ dependencies {
     implementation libraries.androidx.lifecycle
     implementation libraries.material.components
 
+
+    // Dagger
+    implementation libraries.dagger.android
+    implementation libraries.dagger.androidSupport
+    kapt libraries.dagger.compiler
+    kapt libraries.dagger.androidProcessor
 
     testImplementation libraries.junit
     androidTestImplementation libraries.androidx.testing.junit
