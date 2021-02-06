@@ -14,6 +14,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/firebase" />
+            <option value="$PROJECT_DIR$/menu" />
+            <option value="$PROJECT_DIR$/menu/api" />
+            <option value="$PROJECT_DIR$/menu/impl" />
+            <option value="$PROJECT_DIR$/menu/wiring" />
             <option value="$PROJECT_DIR$/metrics" />
             <option value="$PROJECT_DIR$/metrics/api" />
             <option value="$PROJECT_DIR$/metrics/impl" />

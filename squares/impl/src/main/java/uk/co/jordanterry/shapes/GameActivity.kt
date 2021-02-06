@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_game.*
-import uk.co.jordanterry.impl.R
+import uk.co.jordanterry.menu.R
 import javax.inject.Inject
 
 class GameActivity : AppCompatActivity() {

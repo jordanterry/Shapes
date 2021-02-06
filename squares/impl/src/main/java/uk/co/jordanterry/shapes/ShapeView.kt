@@ -11,7 +11,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import uk.co.jordanterry.impl.R
+import uk.co.jordanterry.menu.R
 
 class ShapeView @JvmOverloads constructor(
     context: Context,

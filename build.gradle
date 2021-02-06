@@ -13,12 +13,12 @@ buildscript {
             'google_services'    : '4.3.4',
 
             'androidx'           : [
-                    'appcompat'        : '1.2.0',
-                    'constraint_layout': '2.0.4',
-                    'core_ktx'         : '1.3.2',
-                    'lifecycle'        : '2.2.0',
-                    'lifecycle_extensions' : '2.2.0',
-                    'testing'          : [
+                    'appcompat'           : '1.2.0',
+                    'constraint_layout'   : '2.0.4',
+                    'core_ktx'            : '1.3.2',
+                    'lifecycle'           : '2.2.0',
+                    'lifecycle_extensions': '2.2.0',
+                    'testing'             : [
                             'junit'   : '1.1.2',
                             'espresso': '3.3.0'
                     ]
@@ -37,12 +37,12 @@ buildscript {
             'google_services': "com.google.gms:google-services:${versions.google_services}",
 
             'androidx'       : [
-                    'appcompat'        : "androidx.appcompat:appcompat:${versions.androidx.appcompat}",
-                    'constraint_layout': "androidx.constraintlayout:constraintlayout:${versions.androidx.constraint_layout}",
-                    'core_ktx'         : "androidx.core:core-ktx:${versions.androidx.core_ktx}",
-                    'lifecycle'        : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx.lifecycle}",
-                    'lifecycle_extensions' : "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycle_extensions}",
-                    'testing'          : [
+                    'appcompat'           : "androidx.appcompat:appcompat:${versions.androidx.appcompat}",
+                    'constraint_layout'   : "androidx.constraintlayout:constraintlayout:${versions.androidx.constraint_layout}",
+                    'core_ktx'            : "androidx.core:core-ktx:${versions.androidx.core_ktx}",
+                    'lifecycle'           : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx.lifecycle}",
+                    'lifecycle_extensions': "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycle_extensions}",
+                    'testing'             : [
                             'junit'   : "androidx.test.ext:junit:${versions.androidx.testing.junit}",
                             'espresso': "androidx.test.espresso:espresso-core:${versions.androidx.testing.espresso}"
                     ]

@@ -33,9 +33,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
 }
 
 dependencies {
+    implementation project(':menu')
     implementation project(':squares')
 
     api platform('com.google.firebase:firebase-bom:26.2.0')
