@@ -10,6 +10,5 @@ include ':metrics:wiring'
 include ':metrics:impl'
 include ':metrics:api'
 include ':metrics'
-include ':firebase'
 include ':app'
 rootProject.name = "Shapes"
