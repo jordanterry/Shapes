@@ -2,6 +2,7 @@ package uk.co.jordanterry.shapes
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Provides
+import uk.co.jordanterry.shapes.metrics.Metrics
 
 @dagger.Module
 class ShapesModule {
@@ -12,8 +13,11 @@ class ShapesModule {
     }
 
     @Provides
-    fun providesSquaresViewModelFactory(getCurrentTime: GetCurrentTime): ViewModelProvider.Factory {
-        return SquaresViewModelFactory(getCurrentTime)
+    fun providesSquaresViewModelFactory(
+        getCurrentTime: GetCurrentTime,
+        metrics: Metrics
+    ): ViewModelProvider.Factory {
+        return SquaresViewModelFactory(getCurrentTime, metrics)
     }
 
     @Provides

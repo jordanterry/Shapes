@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -37,6 +36,7 @@ android {
 dependencies {
     implementation libraries.kotlin
     api project(':squares:api')
+    api project(':metrics:api')
 
     implementation libraries.androidx.appcompat
     implementation libraries.androidx.core_ktx
@@ -46,9 +46,6 @@ dependencies {
     implementation libraries.material.components
 
     // Dagger
-    implementation libraries.dagger.android
-    implementation libraries.dagger.androidSupport
-    kapt libraries.dagger.compiler
-    kapt libraries.dagger.androidProcessor
-
+    compileOnly libraries.dagger.android
+    compileOnly libraries.dagger.androidSupport
 }

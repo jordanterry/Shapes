@@ -4,10 +4,11 @@ import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-
+import uk.co.jordanterry.shapes.metrics.Metrics
 
 class GameViewModel(
     private val getCurrentTime: GetCurrentTime,
+    private val metrics: Metrics,
     private val handler: Handler
 ) : ViewModel() {
     private val updateRunnable: Runnable = Runnable {
@@ -22,6 +23,7 @@ class GameViewModel(
     }
 
     fun init() {
+        metrics.sendEvent("game_loaded")
         val shapeToSelect =
             UiModel.Loaded.UiShape(
                 shape = Shape.values()
