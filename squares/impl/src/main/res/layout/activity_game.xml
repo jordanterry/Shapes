@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.co.jordanterry.game.uk.co.jordanterry.shapes.GameActivity">
+    tools:context="uk.co.jordanterry.shapes.GameActivity">
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/game_text_colour"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@id/one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32999998"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="0" />
 
     <uk.co.jordanterry.shapes.ShapeView
         android:id="@+id/svSelect"
@@ -13,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@id/one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvScore" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/gShapes"
@@ -118,7 +132,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintGuide_percent="0.66"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -213,14 +227,5 @@
         app:layout_constraintStart_toEndOf="@id/fifteen"
         app:layout_constraintTop_toBottomOf="@id/twelve" />
 
-    <TextView
-        android:id="@+id/tvScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

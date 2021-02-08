@@ -131,18 +131,9 @@ class ShapeView @JvmOverloads constructor(
                     R.drawable.shape_dash
                 )
             )
-        } else if (shape != currentShape && !isTransitioning()) {
+        } else if (shape != currentShape) {
             val newTransition = transitions[currentShape!!]!!.first { it.to == shape }
             setNextTransition(newTransition, shape)
-        }
-    }
-
-    private fun isTransitioning(): Boolean {
-        val currentDrawable = ivShape.drawable
-        return if (currentDrawable is AnimatedVectorDrawable) {
-            currentDrawable.isRunning
-        } else {
-            false
         }
     }
 
@@ -154,7 +145,26 @@ class ShapeView @JvmOverloads constructor(
         val currentDrawable = ivShape.drawable
         if (currentDrawable is AnimatedVectorDrawable) {
             currentDrawable.reset()
+            if (currentDrawable.isRunning) {
+                currentDrawable.registerAnimationCallback(object : Animatable2.AnimationCallback() {
+                    override fun onAnimationEnd(drawable: Drawable?) {
+                        super.onAnimationEnd(drawable)
+                        startTransition(transition, nextShape)
+                    }
+                })
+            } else {
+                startTransition(transition, nextShape)
+            }
+        } else {
+            startTransition(transition, nextShape)
         }
+
+    }
+
+    private fun startTransition(
+        transition: Transition,
+        nextShape: Shape
+    ) {
         val newDrawable = getDrawableFromTransition(transition)
         ivShape.setImageDrawable(newDrawable)
         newDrawable.registerAnimationCallback(object : Animatable2.AnimationCallback() {
@@ -163,6 +173,7 @@ class ShapeView @JvmOverloads constructor(
             }
         })
         newDrawable.start()
+
     }
 
     private fun getDrawableFromTransition(transition: Transition): AnimatedVectorDrawable {

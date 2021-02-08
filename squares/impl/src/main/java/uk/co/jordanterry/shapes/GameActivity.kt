@@ -63,9 +63,14 @@ class GameActivity : AppCompatActivity() {
 
     private fun handleLoadedUiModel(uiModel: GameViewModel.UiModel.Loaded) {
         tvScore.text = uiModel.score.toString()
-        svSelect.setShape(uiModel.shapeToSelect.shape)
+        val shapeToSelect = uiModel.shapeToSelect
+        if (shapeToSelect.changed) {
+            svSelect.setShape(shapeToSelect.shape)
+        }
         uiModel.shapes.forEachIndexed { index, uiShape ->
-            shapes[index].setShape(uiShape.shape)
+            if (uiShape.changed) {
+                shapes[index].setShape(uiShape.shape)
+            }
         }
     }
 }

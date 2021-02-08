@@ -12,7 +12,7 @@ class SquaresViewModelFactory(
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(GameViewModel::class.java)) {
-            return GameViewModel(getCurrentTime, metrics, Handler(Looper.getMainLooper())) as T
+            return GameViewModelImpl(getCurrentTime, metrics, Handler(Looper.getMainLooper())) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
