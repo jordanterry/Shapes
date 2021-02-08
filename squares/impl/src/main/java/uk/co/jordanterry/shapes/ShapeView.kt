@@ -11,7 +11,8 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import uk.co.jordanterry.menu.R
+import uk.co.jordanterry.shapes.squares.impl.R
+
 
 class ShapeView @JvmOverloads constructor(
     context: Context,
@@ -19,96 +20,96 @@ class ShapeView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var currentShape: uk.co.jordanterry.shapes.Shape? = null
+    private var currentShape: Shape? = null
 
     private val transitions = mapOf(
         Shape.Square to listOf(
             Transition(
-                uk.co.jordanterry.shapes.Shape.Hexagon,
+                Shape.Hexagon,
                 R.drawable.avd_square_to_hexagon
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Triangle,
+                Shape.Triangle,
                 R.drawable.avd_square_to_triangle
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Rhombus,
+                Shape.Rhombus,
                 R.drawable.avd_square_to_rhombus
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Dash,
+                Shape.Dash,
                 R.drawable.avd_square_to_dash
             )
         ),
-        uk.co.jordanterry.shapes.Shape.Triangle to listOf(
+        Shape.Triangle to listOf(
             Transition(
-                uk.co.jordanterry.shapes.Shape.Square,
+                Shape.Square,
                 R.drawable.avd_triangle_to_square
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Hexagon,
+                Shape.Hexagon,
                 R.drawable.avd_triangle_to_hexagon
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Rhombus,
+                Shape.Rhombus,
                 R.drawable.avd_triangle_to_rhombus
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Dash,
+                Shape.Dash,
                 R.drawable.avd_triangle_to_dash
             )
         ),
-        uk.co.jordanterry.shapes.Shape.Hexagon to listOf(
+        Shape.Hexagon to listOf(
             Transition(
-                uk.co.jordanterry.shapes.Shape.Square,
+                Shape.Square,
                 R.drawable.avd_hexagon_to_square
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Triangle,
+                Shape.Triangle,
                 R.drawable.avd_hexagon_to_triangle
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Rhombus,
+                Shape.Rhombus,
                 R.drawable.avd_hexagon_to_rhombus
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Dash,
+                Shape.Dash,
                 R.drawable.avd_hexagon_to_dash
             )
         ),
-        uk.co.jordanterry.shapes.Shape.Rhombus to listOf(
+        Shape.Rhombus to listOf(
             Transition(
-                uk.co.jordanterry.shapes.Shape.Square,
+                Shape.Square,
                 R.drawable.avd_rhombus_to_square
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Triangle,
+                Shape.Triangle,
                 R.drawable.avd_rhombus_to_triangle
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Hexagon,
+                Shape.Hexagon,
                 R.drawable.avd_rhombus_to_hexagon
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Dash,
+                Shape.Dash,
                 R.drawable.avd_rhombus_to_dash
             )
         ),
-        uk.co.jordanterry.shapes.Shape.Dash to listOf(
+        Shape.Dash to listOf(
             Transition(
-                uk.co.jordanterry.shapes.Shape.Square,
+                Shape.Square,
                 R.drawable.avd_dash_to_square
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Triangle,
+                Shape.Triangle,
                 R.drawable.avd_dash_to_triangle
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Hexagon,
+                Shape.Hexagon,
                 R.drawable.avd_dash_to_hexagon
             ),
             Transition(
-                uk.co.jordanterry.shapes.Shape.Rhombus,
+                Shape.Rhombus,
                 R.drawable.avd_dash_to_rhombus
             )
         )
@@ -121,9 +122,9 @@ class ShapeView @JvmOverloads constructor(
         ivShape = findViewById(R.id.ivShape)
     }
 
-    fun updateShape(shape: uk.co.jordanterry.shapes.Shape) {
+    fun setShape(shape: Shape) {
         if (currentShape == null) {
-            currentShape = uk.co.jordanterry.shapes.Shape.Dash
+            currentShape = Shape.Dash
             ivShape.setImageDrawable(
                 ContextCompat.getDrawable(
                     context,
@@ -148,7 +149,7 @@ class ShapeView @JvmOverloads constructor(
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setNextTransition(
         transition: Transition,
-        nextShape: uk.co.jordanterry.shapes.Shape
+        nextShape: Shape
     ) {
         val currentDrawable = ivShape.drawable
         if (currentDrawable is AnimatedVectorDrawable) {

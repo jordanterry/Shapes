@@ -1,7 +1,5 @@
 package uk.co.jordanterry.shapes
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_game.*
-import uk.co.jordanterry.menu.R
+import uk.co.jordanterry.shapes.squares.impl.R
 import javax.inject.Inject
 
 class GameActivity : AppCompatActivity() {
@@ -36,30 +34,38 @@ class GameActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        viewModel.uiModel.observe(this, Observer { uiModel ->
-            when (uiModel) {
-                is GameViewModel.UiModel.Loading -> {
-                }
-                is GameViewModel.UiModel.Loaded -> {
-                    tvScore.text = uiModel.score.toString()
-                    svSelect.updateShape(uiModel.shapeToSelect.shape)
-                    uiModel.shapes.forEachIndexed { index, uiShape ->
-                        shapes[index].updateShape(uiShape.shape)
-                    }
-                }
-            }
-        })
+        initialiseShapes()
+        initialiseViewModel()
+    }
 
+    private fun initialiseViewModel() {
+        viewModel.uiModel.observe(this, Observer { uiModel -> handleNewUiModel(uiModel) })
+        viewModel.init()
+    }
+
+    private fun initialiseShapes() {
         shapes.forEachIndexed { index, shapeView ->
             shapeView.tag = index
             shapeView.setOnClickListener(shapeClickListener)
         }
-        viewModel.init()
     }
 
-    companion object {
-        fun newIntent(context: Context): Intent {
-            return Intent(context, GameActivity::class.java)
+    private fun handleNewUiModel(uiModel: GameViewModel.UiModel) {
+        when (uiModel) {
+            is GameViewModel.UiModel.Loading -> handleLoadingUiModel(uiModel)
+            is GameViewModel.UiModel.Loaded -> handleLoadedUiModel(uiModel)
+        }
+    }
+
+    private fun handleLoadingUiModel(uiModel: GameViewModel.UiModel.Loading) {
+
+    }
+
+    private fun handleLoadedUiModel(uiModel: GameViewModel.UiModel.Loaded) {
+        tvScore.text = uiModel.score.toString()
+        svSelect.setShape(uiModel.shapeToSelect.shape)
+        uiModel.shapes.forEachIndexed { index, uiShape ->
+            shapes[index].setShape(uiShape.shape)
         }
     }
 }

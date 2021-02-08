@@ -5,6 +5,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import dagger.android.AndroidInjection
 import uk.co.jordanterry.shapes.StartGame
+import uk.co.jordanterry.shapes.menu.impl.R
 import uk.co.jordanterry.shapes.metrics.Metrics
 import javax.inject.Inject
 
