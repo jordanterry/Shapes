@@ -10,14 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shapes">
-        <activity-alias
-            android:name="uk.co.jordanterry.menu.MenuActivity"
-            android:targetActivity="uk.co.jordanterry.menu.MenuActivity">
+        <activity
+            android:name="uk.co.jordanterry.shapes.ShapesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity-alias>
+        </activity>
     </application>
 </manifest>

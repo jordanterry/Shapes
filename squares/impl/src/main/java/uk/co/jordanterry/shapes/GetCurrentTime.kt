@@ -1,10 +1,8 @@
 package uk.co.jordanterry.shapes
 
-class GetCurrentTimeImpl : GetCurrentTime {
-    override operator fun invoke(): Long = System.currentTimeMillis()
-}
+import javax.inject.Inject
 
-interface GetCurrentTime {
-    operator fun invoke(): Long
+class GetCurrentTime @Inject constructor()  {
+     operator fun invoke(): Long = System.currentTimeMillis()
 }
 

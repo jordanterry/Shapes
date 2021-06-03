@@ -1,24 +1,19 @@
 package uk.co.jordanterry.shapes
 
-import androidx.lifecycle.ViewModelProvider
 import dagger.Provides
-import uk.co.jordanterry.shapes.metrics.Metrics
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 
+
+@InstallIn(ViewModelComponent::class)
 @dagger.Module
 class ShapesModule {
 
     @Provides
     fun providesGetCurrentTime(): GetCurrentTime {
-        return GetCurrentTimeImpl()
+        return GetCurrentTime()
     }
 
-    @Provides
-    fun providesSquaresViewModelFactory(
-        getCurrentTime: GetCurrentTime,
-        metrics: Metrics
-    ): ViewModelProvider.Factory {
-        return SquaresViewModelFactory(getCurrentTime, metrics)
-    }
 
     @Provides
     fun providesStartGame(): StartGame {

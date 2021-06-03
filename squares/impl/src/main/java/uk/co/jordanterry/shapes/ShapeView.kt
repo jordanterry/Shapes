@@ -4,15 +4,12 @@ import android.content.Context
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import uk.co.jordanterry.shapes.squares.impl.R
-
 
 class ShapeView @JvmOverloads constructor(
     context: Context,
@@ -115,30 +112,37 @@ class ShapeView @JvmOverloads constructor(
         )
     )
 
-    private val ivShape: ImageView
+    private val ivShape: ImageView by lazy {
+        findViewById<ImageView>(R.id.ivShape)
+    }
 
     init {
         View.inflate(context, R.layout.view_shape, this)
-        ivShape = findViewById(R.id.ivShape)
     }
 
     fun setShape(shape: Shape) {
         if (currentShape == null) {
             currentShape = Shape.Dash
-            ivShape.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.shape_dash
-                )
+            val dashDrawable = ContextCompat.getDrawable(
+                context,
+                R.drawable.shape_dash
             )
+            ivShape.setImageDrawable(dashDrawable)
         } else if (shape != currentShape) {
             val newTransition = transitions[currentShape!!]!!.first { it.to == shape }
-            setNextTransition(newTransition, shape)
+            setTransitionToNextShape(newTransition, shape)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun setNextTransition(
+    /**
+     * Decide how the [ShapeView] should transition to the next shape.
+     *
+     * If the current Drawable is an [AnimatedVectorDrawable] and it is currently running we will wait
+     * until the end of the current transition and then update the drawble.
+     *
+     * Any other scenario will immediately update the drawable.
+     */
+    private fun setTransitionToNextShape(
         transition: Transition,
         nextShape: Shape
     ) {
@@ -149,23 +153,22 @@ class ShapeView @JvmOverloads constructor(
                 currentDrawable.registerAnimationCallback(object : Animatable2.AnimationCallback() {
                     override fun onAnimationEnd(drawable: Drawable?) {
                         super.onAnimationEnd(drawable)
-                        startTransition(transition, nextShape)
+                        startTransitionToNextShape(transition, nextShape)
                     }
                 })
             } else {
-                startTransition(transition, nextShape)
+                startTransitionToNextShape(transition, nextShape)
             }
         } else {
-            startTransition(transition, nextShape)
+            startTransitionToNextShape(transition, nextShape)
         }
-
     }
 
-    private fun startTransition(
-        transition: Transition,
-        nextShape: Shape
-    ) {
-        val newDrawable = getDrawableFromTransition(transition)
+    /**
+     * Start the [transition] to the [nextShape].
+     */
+    private fun startTransitionToNextShape(transition: Transition, nextShape: Shape) {
+        val newDrawable = getAnimatedVectorDrawableFromTransition(transition)
         ivShape.setImageDrawable(newDrawable)
         newDrawable.registerAnimationCallback(object : Animatable2.AnimationCallback() {
             override fun onAnimationEnd(drawable: Drawable?) {
@@ -173,10 +176,12 @@ class ShapeView @JvmOverloads constructor(
             }
         })
         newDrawable.start()
-
     }
 
-    private fun getDrawableFromTransition(transition: Transition): AnimatedVectorDrawable {
+    /**
+     * Convert the drawable defined withing [Transition] to an [AnimatedVectorDrawable].
+     */
+    private fun getAnimatedVectorDrawableFromTransition(transition: Transition): AnimatedVectorDrawable {
         return ContextCompat.getDrawable(context, transition.drawable) as AnimatedVectorDrawable
     }
 }

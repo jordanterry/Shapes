@@ -3,6 +3,6 @@
     package="uk.co.jordanterry.shapes.squares.impl">
 
     <application>
-        <activity android:name="uk.co.jordanterry.shapes.GameActivity" />
+        <activity android:name="uk.co.jordanterry.shapes.GameFragment" />
     </application>
 </manifest>

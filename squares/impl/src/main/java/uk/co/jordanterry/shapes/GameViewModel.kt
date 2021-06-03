@@ -1,29 +1,30 @@
 package uk.co.jordanterry.shapes
 
-import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import uk.co.jordanterry.shapes.metrics.Metrics
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import kotlin.concurrent.thread
 
-class GameViewModelImpl(
-    private val getCurrentTime: GetCurrentTime,
-    private val metrics: Metrics,
-    private val handler: Handler
-) : GameViewModel() {
-    private val updateRunnable: Runnable = Runnable {
-        updateShapes()
-    }
-    override val uiModel: MutableLiveData<UiModel> =
-        MutableLiveData(UiModel.Loading)
+@HiltViewModel
+class GameViewModel @Inject constructor(
+    private val getCurrentTime: GetCurrentTime
+) : ViewModel() {
 
-    init {
-        uiModel.value =
-            UiModel.Loading
-    }
+    private var isPlaying = false
 
-    override fun init() {
-        metrics.sendEvent("game_loaded")
+    private val mutableUiModel = MutableLiveData<UiModel>(UiModel.Loading)
+    val uiModel: LiveData<UiModel> =mutableUiModel
+
+    fun init() {
         val shapeToSelect =
             UiModel.Loaded.UiShape(
                 shape = Shape.values()
@@ -42,23 +43,31 @@ class GameViewModelImpl(
             )
         }
 
-        uiModel.value = UiModel.Loaded(
+        mutableUiModel.value = UiModel.Loaded(
             0, shapeToSelect, shapes
         )
-        updateShapes()
+        viewModelScope.launch {
+            isPlaying = true
+            updateShapes()
+        }
     }
 
-    private fun updateShapes() {
-        val currentUiModel = uiModel.value
-        if (currentUiModel is UiModel.Loaded) {
-            val shapes = currentUiModel.shapes
-            val newShapes = shapes.map(::updateShapeIfRequired)
-            uiModel.value = currentUiModel.copy(
-                shapeToSelect = updateShapeIfRequired(currentUiModel.shapeToSelect),
-                shapes = newShapes
-            )
+    private suspend fun updateShapes() = withContext(Dispatchers.IO) {
+        while (isPlaying) {
+            delay(100)
+            val currentUiModel = uiModel.value
+            if (currentUiModel is UiModel.Loaded) {
+                val shapes = currentUiModel.shapes
+                val newShapes = shapes.map(::updateShapeIfRequired)
+                withContext(Dispatchers.Main) {
+                    mutableUiModel.value = currentUiModel.copy(
+                        shapeToSelect = updateShapeIfRequired(currentUiModel.shapeToSelect),
+                        shapes = newShapes
+                    )
+                }
+            }
         }
-        handler.postDelayed(updateRunnable, 100)
+
     }
 
     private fun updateShapeIfRequired(uiShape: UiModel.Loaded.UiShape): UiModel.Loaded.UiShape {
@@ -83,7 +92,7 @@ class GameViewModelImpl(
         return (1500L..2500L).random()
     }
 
-    override fun shapeSelected(position: Int) {
+    fun shapeSelected(position: Int) {
         val currentUiModel = uiModel.value
         if (currentUiModel is UiModel.Loaded) {
             if (currentUiModel.shapes[position].shape == currentUiModel.shapeToSelect.shape) {
@@ -95,7 +104,7 @@ class GameViewModelImpl(
     }
 
     private fun validSelection(currentUiModel: UiModel.Loaded, position: Int) {
-        uiModel.value =
+        mutableUiModel.value =
             currentUiModel.copy(
                 score = currentUiModel.score + 1,
                 shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
@@ -114,7 +123,7 @@ class GameViewModelImpl(
 
     private fun invalidSelection(currentUiModel: UiModel.Loaded, position: Int) {
         stopUpdates()
-        uiModel.value = currentUiModel.copy(
+        mutableUiModel.value = currentUiModel.copy(
             shapes = currentUiModel.shapes.mapIndexed { index, uiShape ->
                 if (index != position) {
                     UiModel.Loaded.UiShape(
@@ -131,21 +140,13 @@ class GameViewModelImpl(
     }
 
     private fun stopUpdates() {
-        handler.removeCallbacks(updateRunnable)
+        isPlaying = false
     }
 
     override fun onCleared() {
         super.onCleared()
         stopUpdates()
     }
-}
-
-abstract class GameViewModel : ViewModel() {
-    abstract val uiModel: LiveData<UiModel>
-
-    abstract fun init()
-
-    abstract fun shapeSelected(position: Int)
 
     sealed class UiModel {
         object Loading : UiModel()
