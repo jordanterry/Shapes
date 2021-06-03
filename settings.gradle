@@ -1,6 +1,3 @@
-include ':squares:wiring'
-include ':squares:impl'
-include ':squares:api'
 include ':squares'
 include ':app'
 rootProject.name = "Shapes"

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -34,5 +36,26 @@ android {
 
 dependencies {
     implementation libraries.kotlin
-    api project(':squares:wiring')
+
+    implementation libraries.androidx.activity
+    implementation libraries.androidx.activity_ktx
+    implementation libraries.androidx.fragment
+    implementation libraries.androidx.fragment_ktx
+    implementation libraries.androidx.appcompat
+    implementation libraries.androidx.core_ktx
+    implementation libraries.androidx.constraint_layout
+    implementation libraries.androidx.lifecycle
+    implementation libraries.androidx.lifecycle_extensions
+    implementation libraries.material.components
+    implementation libraries.coroutines
+    implementation libraries.coroutines_android
+
+    // Dagger
+    implementation libraries.dagger.android
+    implementation libraries.dagger.androidSupport
+    implementation libraries.dagger.hilt
+
+    kapt libraries.dagger.compiler
+    kapt libraries.dagger.androidProcessor
+    kapt libraries.dagger.hilt_compiler
 }
